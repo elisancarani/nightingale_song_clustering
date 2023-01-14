@@ -19,7 +19,7 @@ DIR = './dataset/songs_extracted'
 #function that loads the songs from the songs_extracted dataset
 def load_songs_extracted(directory):
     data = []
-    for bird_names in os.listdir(directory)[:1]:
+    for bird_names in os.listdir(directory)[:20]:
         path_bird_names = os.path.join(directory, bird_names)
         if os.path.isdir(path_bird_names):
             for channel in os.listdir(path_bird_names):
