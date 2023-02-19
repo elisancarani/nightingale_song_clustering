@@ -8,7 +8,7 @@ import re
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.signal import butter, sosfiltfilt
-
+import cv2
 
 
 #constants
@@ -89,12 +89,31 @@ for signal in df['filtered_signal']:
 	chromagrams.append(chrom)
 
 
-plt.figure(figsize=(15, 5))
-for i in range(len(chromagrams)):
-	librosa.display.specshow(chromagrams[i], x_axis='time', y_axis='chroma', hop_length=512, cmap="Greys")
-	plt.axis('off') # yes
-	plt.margins(0,0)
-	plt.savefig("chromagrams/" + str(i +2861) + "out.png", bbox_inches='tight', facecolor='white', pad_inches=0)
-	plt.clf()
+print(chromagrams[0].shape)
+print(chromagrams[0][0][0])
+print(chromagrams[0])
+#print(chromagrams.min)
+#print(chromagrams.max)
+
+# arr = np.array(chromagrams[0])
+
+# cv2.imshow('', chromagrams[0])
+# cv2.waitKey(0)
+
+# cv2.imshow('', arr)
+# cv2.waitKey(0)
+
+# cv2.imshow('', arr*255)
+# cv2.waitKey(0)
+
+
+# plt.figure(figsize=(15, 5))
+for i in range(len(chromagrams)):	
+	# librosa.display.specshow(chromagrams[i], x_axis='time', y_axis='chroma', hop_length=512, cmap="Greys")
+	# plt.axis('off') # yes
+	# plt.margins(0,0)
+	# plt.savefig("chromagrams/" + str(i) + "out.png", bbox_inches='tight', facecolor='white', pad_inches=0)
+	# plt.clf()
+	cv2.imwrite("chromagrams/" + str(i+2861) + "out.png", chromagrams[i]*255)
 	if i % 50 == 0:
 		print("Made up to number" + str(i))
